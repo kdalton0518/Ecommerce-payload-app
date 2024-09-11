@@ -516,5 +516,5 @@ export interface Footer {
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config {}
+  export interface PayloadGeneratedTypes extends Config {}
 }
