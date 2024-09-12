@@ -19,12 +19,14 @@ export const updateUserPurchases: AfterChangeHook<Order> = async ({ doc, req, op
         id: orderedBy,
         data: {
           purchases: [
-            ...(user?.purchases?.map(purchase =>
-              typeof purchase === 'string' ? purchase : purchase.id,
-            ) || []), // eslint-disable-line function-paren-newline
-            ...(doc?.items?.map(({ product }) =>
-              typeof product === 'string' ? product : product.id,
-            ) || []), // eslint-disable-line function-paren-newline
+            ...(Array.isArray(user?.purchases)
+              ? user.purchases.map(purchase =>
+                  typeof purchase === 'string' ? purchase : purchase.id,
+                )
+              : []),
+            ...(Array.isArray(doc?.items)
+              ? doc.items.map(({ product }) => (typeof product === 'string' ? product : product.id))
+              : []),
           ],
         },
       })

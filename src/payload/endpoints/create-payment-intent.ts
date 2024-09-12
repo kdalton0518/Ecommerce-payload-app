@@ -35,7 +35,9 @@ export const createPaymentIntent: PayloadHandler = async (req, res): Promise<voi
     // lookup user in Stripe and create one if not found
     if (!stripeCustomerID) {
       const customer = await stripe.customers.create({
+        // @ts-ignore
         email: fullUser?.email,
+        // email: fullUser?.email,
         name: fullUser?.name,
       })
 
@@ -52,6 +54,7 @@ export const createPaymentIntent: PayloadHandler = async (req, res): Promise<voi
 
     let total = 0
 
+    // @ts-ignore
     const hasItems = fullUser?.cart?.items?.length > 0
 
     if (!hasItems) {
@@ -60,6 +63,7 @@ export const createPaymentIntent: PayloadHandler = async (req, res): Promise<voi
 
     // for each item in cart, lookup the product in Stripe and add its price to the total
     await Promise.all(
+      // @ts-ignore
       fullUser?.cart?.items?.map(async (item: CartItems[0]): Promise<null> => {
         const { product, quantity } = item
 
@@ -94,6 +98,7 @@ export const createPaymentIntent: PayloadHandler = async (req, res): Promise<voi
     }
 
     const paymentIntent = await stripe.paymentIntents.create({
+      // @ts-ignore
       customer: stripeCustomerID,
       amount: total,
       currency: 'usd',

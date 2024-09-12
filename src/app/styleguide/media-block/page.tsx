@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
-import staticImage from '../../../../../public/static-image.jpg'
+import staticImage from '../../../../public/static-image.jpg'
 import { MediaBlock } from '../../_blocks/MediaBlock'
 import { Gutter } from '../../_components/Gutter'
 import { VerticalPadding } from '../../_components/VerticalPadding'

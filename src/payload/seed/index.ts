@@ -114,7 +114,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     data: JSON.parse(
       JSON.stringify({ ...product1, categories: [apparelCategory.id] }).replace(
         /"\{\{PRODUCT_IMAGE\}\}"/g,
-        image1ID,
+        image1ID.toString(),
       ),
     ),
   })
@@ -124,7 +124,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     data: JSON.parse(
       JSON.stringify({ ...product2, categories: [ebooksCategory.id] }).replace(
         /"\{\{PRODUCT_IMAGE\}\}"/g,
-        image2ID,
+        image2ID.toString(),
       ),
     ),
   })
@@ -134,7 +134,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     data: JSON.parse(
       JSON.stringify({ ...product3, categories: [coursesCategory.id] }).replace(
         /"\{\{PRODUCT_IMAGE\}\}"/g,
-        image3ID,
+        image3ID.toString(),
       ),
     ),
   })
@@ -184,9 +184,9 @@ export const seed = async (payload: Payload): Promise<void> => {
     collection: 'pages',
     data: JSON.parse(
       JSON.stringify(home)
-        .replace(/"\{\{PRODUCT1_IMAGE\}\}"/g, image1ID)
-        .replace(/"\{\{PRODUCT2_IMAGE\}\}"/g, image2ID)
-        .replace(/"\{\{PRODUCTS_PAGE_ID\}\}"/g, productsPageID),
+        .replace(/"\{\{PRODUCT1_IMAGE\}\}"/g, image1ID.toString())
+        .replace(/"\{\{PRODUCT2_IMAGE\}\}"/g, image2ID.toString())
+        .replace(/"\{\{PRODUCTS_PAGE_ID\}\}"/g, productsPageID.toString()),
     ),
   })
 
@@ -195,7 +195,7 @@ export const seed = async (payload: Payload): Promise<void> => {
   await payload.create({
     collection: 'pages',
     data: JSON.parse(
-      JSON.stringify(cartPage).replace(/"\{\{PRODUCTS_PAGE_ID\}\}"/g, productsPageID),
+      JSON.stringify(cartPage).replace(/"\{\{PRODUCTS_PAGE_ID\}\}"/g, productsPageID.toString()),
     ),
   })
 
